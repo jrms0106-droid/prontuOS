@@ -15,7 +15,7 @@ no próprio computador.
 ## Integração com o sistema do computador
 
 - **Instalador nativo** com atalho na Área de Trabalho e no Menu Iniciar (Windows),
-  `.dmg` (macOS) e `.AppImage`/`.deb` (Linux)
+  `.dmg` (macOS) e `.AppImage` (Linux)
 - **Dados na pasta do usuário do sistema**:
   - Windows: `%APPDATA%\ProntuOS`
   - macOS: `~/Library/Application Support/ProntuOS`

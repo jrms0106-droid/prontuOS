@@ -35,5 +35,4 @@ jobs:
             dist/*.exe
             dist/*.dmg
             dist/*.AppImage
-            dist/*.deb
           if-no-files-found: error
