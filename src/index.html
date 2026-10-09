@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:">
+  <title>ProntuOS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="lateral">
+    <header class="marca">
+      <strong>ProntuOS</strong>
+      <span>Prontuário eletrônico</span>
+    </header>
+    <div class="busca">
+      <input id="busca" type="search" placeholder="Buscar por nome, CPF ou telefone">
+      <button id="btn-novo" class="primario">+ Novo paciente</button>
+    </div>
+    <ul id="lista-pacientes" class="lista"></ul>
+    <footer class="sistema">
+      <label class="interruptor">
+        <input id="chk-inicio" type="checkbox"> Iniciar com o computador
+      </label>
+      <div class="acoes-sistema">
+        <button id="btn-exportar">Exportar backup</button>
+        <button id="btn-importar">Importar backup</button>
+        <button id="btn-pasta">Pasta de dados</button>
+      </div>
+      <small id="info-sistema"></small>
+    </footer>
+  </aside>
+
+  <main id="conteudo">
+    <section id="vazio" class="vazio">
+      <h1>Bem-vindo ao ProntuOS</h1>
+      <p>Selecione um paciente na lista ou cadastre um novo.</p>
+      <p class="nota">Todos os dados ficam salvos neste computador.</p>
+    </section>
+
+    <section id="tela-paciente" hidden>
+      <form id="form-paciente" class="cartao">
+        <div class="cabecalho">
+          <h2 id="titulo-paciente">Novo paciente</h2>
+          <div class="botoes">
+            <button type="button" id="btn-imprimir" class="sem-impressao">Imprimir prontuário</button>
+            <button type="button" id="btn-excluir-paciente" class="perigo sem-impressao">Excluir</button>
+            <button type="submit" class="primario sem-impressao">Salvar</button>
+          </div>
+        </div>
+        <div class="grade">
+          <label class="largo">Nome completo*<input name="nome" required></label>
+          <label>Data de nascimento<input name="nascimento" type="date"></label>
+          <label>Sexo
+            <select name="sexo">
+              <option value=""></option>
+              <option>Feminino</option>
+              <option>Masculino</option>
+              <option>Outro</option>
+            </select>
+          </label>
+          <label>CPF<input name="cpf"></label>
+          <label>Cartão SUS<input name="cns"></label>
+          <label>Telefone<input name="telefone"></label>
+          <label>E-mail<input name="email" type="email"></label>
+          <label class="largo">Endereço<input name="endereco"></label>
+          <label>Convênio<input name="convenio"></label>
+          <label>Tipo sanguíneo<input name="tipoSanguineo"></label>
+          <label class="largo">Alergias<textarea name="alergias" rows="2"></textarea></label>
+          <label class="largo">Comorbidades / antecedentes<textarea name="antecedentes" rows="2"></textarea></label>
+          <label class="largo">Medicamentos em uso<textarea name="medicamentos" rows="2"></textarea></label>
+        </div>
+      </form>
+
+      <div id="area-atendimentos" class="cartao">
+        <div class="cabecalho">
+          <h2>Atendimentos</h2>
+          <button type="button" id="btn-novo-atendimento" class="primario sem-impressao">+ Novo atendimento</button>
+        </div>
+        <form id="form-atendimento" class="grade sem-impressao" hidden>
+          <label>Data e hora*<input name="data" type="datetime-local" required></label>
+          <label>Profissional<input name="profissional"></label>
+          <label class="largo">Queixa principal<textarea name="queixa" rows="2"></textarea></label>
+          <label class="largo">Anamnese / HDA<textarea name="anamnese" rows="3"></textarea></label>
+          <label class="largo">Exame físico<textarea name="exameFisico" rows="3"></textarea></label>
+          <label>Hipótese diagnóstica<input name="diagnostico"></label>
+          <label>CID-10<input name="cid"></label>
+          <label class="largo">Conduta / prescrição<textarea name="conduta" rows="3"></textarea></label>
+          <div class="largo botoes">
+            <button type="button" id="btn-cancelar-atendimento">Cancelar</button>
+            <button type="submit" class="primario">Salvar atendimento</button>
+          </div>
+        </form>
+        <ol id="lista-atendimentos" class="atendimentos"></ol>
+      </div>
+    </section>
+  </main>
+
+  <div id="aviso" class="aviso" hidden></div>
+  <script src="renderer.js"></script>
+</body>
+</html>

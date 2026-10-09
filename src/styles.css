@@ -1,0 +1,132 @@
+:root {
+  --fundo: #f4f6f8;
+  --painel: #ffffff;
+  --texto: #1d2733;
+  --suave: #5f6b7a;
+  --borda: #d9dee4;
+  --primaria: #0f766e;
+  --primaria-texto: #ffffff;
+  --perigo: #b42318;
+  --selecao: #e6f4f1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #12171d;
+    --painel: #1b222b;
+    --texto: #e6ebf0;
+    --suave: #9aa6b2;
+    --borda: #2e3844;
+    --primaria: #2bb3a3;
+    --primaria-texto: #08201d;
+    --perigo: #f2766b;
+    --selecao: #183330;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+button {
+  padding: 7px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background: var(--painel);
+  cursor: pointer;
+}
+button:hover { border-color: var(--suave); }
+button.primario { background: var(--primaria); border-color: var(--primaria); color: var(--primaria-texto); }
+button.perigo { color: var(--perigo); }
+
+input, select, textarea {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background: var(--fundo);
+}
+textarea { resize: vertical; }
+
+.lateral {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: var(--painel);
+  border-right: 1px solid var(--borda);
+}
+.marca { padding: 16px; border-bottom: 1px solid var(--borda); }
+.marca strong { display: block; font-size: 18px; color: var(--primaria); }
+.marca span { color: var(--suave); font-size: 12px; }
+.busca { padding: 12px; display: grid; gap: 8px; }
+
+.lista { list-style: none; margin: 0; padding: 0 8px; overflow-y: auto; flex: 1; }
+.lista li { padding: 8px 10px; border-radius: 6px; cursor: pointer; }
+.lista li:hover { background: var(--fundo); }
+.lista li.ativo { background: var(--selecao); }
+.lista li small { display: block; color: var(--suave); }
+.lista .sem-itens { color: var(--suave); cursor: default; }
+
+.sistema { padding: 12px; border-top: 1px solid var(--borda); display: grid; gap: 8px; }
+.interruptor { display: flex; align-items: center; gap: 8px; }
+.interruptor input { width: auto; }
+.acoes-sistema { display: flex; flex-wrap: wrap; gap: 6px; }
+.acoes-sistema button { font-size: 12px; padding: 5px 8px; }
+.sistema small { color: var(--suave); font-size: 11px; word-break: break-all; }
+
+main { flex: 1; overflow-y: auto; padding: 20px; }
+
+.vazio { text-align: center; margin-top: 15vh; color: var(--suave); }
+.vazio h1 { color: var(--texto); }
+
+.cartao {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.cabecalho { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.cabecalho h2 { margin: 0; font-size: 18px; }
+.botoes { display: flex; gap: 8px; justify-content: flex-end; }
+
+.grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px 14px; }
+.grade label { display: grid; gap: 4px; color: var(--suave); font-size: 12px; }
+.grade .largo { grid-column: 1 / -1; }
+#form-atendimento { padding: 12px; border: 1px dashed var(--borda); border-radius: 8px; margin-bottom: 12px; }
+
+.atendimentos { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.atendimentos li { border: 1px solid var(--borda); border-radius: 8px; padding: 12px; }
+.atendimentos .topo { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.atendimentos .topo button { font-size: 12px; padding: 3px 8px; }
+.atendimentos dl { margin: 0; display: grid; grid-template-columns: 160px 1fr; gap: 4px 12px; }
+.atendimentos dt { color: var(--suave); }
+.atendimentos dd { margin: 0; white-space: pre-wrap; }
+
+.aviso {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--texto);
+  color: var(--painel);
+}
+
+@media print {
+  body { display: block; height: auto; background: #fff; color: #000; }
+  .lateral, .sem-impressao, #vazio, .aviso { display: none !important; }
+  main { padding: 0; overflow: visible; }
+  .cartao { border: none; padding: 0; }
+  input, select, textarea { border: none; background: none; padding: 0; resize: none; }
+}
